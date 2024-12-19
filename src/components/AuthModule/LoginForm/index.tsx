@@ -54,8 +54,6 @@ const LoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
-    console.log(data);
-
     // setIsLoading(true);
     request("/user/login", "POST", data)
       .then((res) => {

@@ -68,6 +68,7 @@ export function SignupForm({
   });
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
+    // setIsLoading(true);
     request("/user/signup", "POST", data)
       .then((res) => {
         if (res?.success) {
@@ -153,7 +154,11 @@ export function SignupForm({
                     )}
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isLoading || form.formState.isSubmitting}
+                >
                   Submit
                 </Button>
               </div>
