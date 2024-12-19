@@ -4,40 +4,28 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCookie } from "./utils/cookieActions";
 import { cookies } from "next/headers";
 
-// export default withAuth({
-//   pages: {
-//     signIn: "/login",
-//     error: "/notfound",
-//   },
-// });
-
-// export const config = {
-//   matcher: [
-//     // "/users/:path*" //use this syntax for nested routes,
-//     "/:path*",
-//   ],
-// };
-
 const protectedRoutes = ["/products"];
-const publicRoutes = ["/login", "/signup", "/"];
+const authRoutes = ["/login", "/signup"];
+const publicRoutes = ["/"];
 
 export default async function middleware(request: NextRequest) {
   const cookie = await getCookie("auth");
+  console.log("cookie value", cookie);
 
   const path = request.nextUrl.pathname;
-  console.log(path);
-  // const isProtectedRoute = protectedRoutes.includes(path);
   const isProtectedRoute = protectedRoutes.some((ele) => path.includes(ele));
+  const isAuthRoute = authRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
 
   if (isProtectedRoute && !cookie) {
     return NextResponse.redirect(new URL("/login", request.url));
+  } else if (isAuthRoute && cookie) {
+    return NextResponse.redirect(new URL("/products", request.url));
   }
 
   return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };

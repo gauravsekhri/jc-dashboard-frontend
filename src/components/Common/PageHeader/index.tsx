@@ -14,8 +14,8 @@ const PageHeader = () => {
 
   return (
     <>
-      <div className="px-4 py-8 flex justify-between items-center">
-        <div className="font-bold">JC</div>
+      <div className="py-8 flex justify-between items-center">
+        <div className="font-bold">Jasper Colin</div>
         <div
           className="cursor-pointer text-neutral-500 hover:text-black"
           onClick={handleLogout}

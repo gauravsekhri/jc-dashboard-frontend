@@ -114,10 +114,6 @@ const AddProductForm = () => {
                           {...field}
                         />
                       </FormControl>
-                      {/* <FormDescription className="text-xs">
-                        You can <span>@mention</span> other users and
-                        organizations.
-                      </FormDescription> */}
                       <FormMessage />
                     </FormItem>
                   )}
@@ -189,13 +185,6 @@ const AddProductForm = () => {
                 />
               </div>
               <div className="flex items-center gap-4 justify-end">
-                <Button
-                  type="reset"
-                  variant="outline"
-                  onClick={() => form.reset()}
-                >
-                  Reset
-                </Button>
                 <Button type="submit">Submit</Button>
               </div>
             </div>
