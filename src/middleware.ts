@@ -16,14 +16,20 @@ const authRoutes = ["/login", "/signup"];
 const publicRoutes = ["/"];
 
 export default async function middleware(request: NextRequest) {
+  const cookieStore = await cookies();
   let cookie: any = await getCookie("auth");
 
+  console.log("next/header cookie", cookieStore.get("auth"));
   console.log("middleware cookie", request.cookies.get("auth"));
 
   if (request.cookies.has("auth")) {
-    cookie = request.cookies.get("auth")?.value;
+    cookie = request.cookies.get("auth");
     console.log("header cookie", request.cookies.get("auth"));
     // return NextResponse.next();
+  }
+
+  if (!cookie) {
+    cookie = cookieStore.get("auth");
   }
 
   console.log("cookie value", cookie);
