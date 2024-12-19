@@ -58,6 +58,7 @@ const LoginForm = () => {
     request("/user/login", "POST", data)
       .then((res) => {
         if (res?.success) {
+          if (res?.data?.token) await createCookie("auth", res?.data?.token);
           toast.success(res?.message);
           console.log("login header", res?.headers);
           // createCookie("auth", res?.headers)
