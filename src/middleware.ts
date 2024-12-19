@@ -1,14 +1,14 @@
 // import { withAuth } from "next-auth/middleware";
 
 import { NextRequest, NextResponse } from "next/server";
-import { getCookie } from "./utils/cookieActions";
-// import {
-//   getCookie,
-//   getCookies,
-//   setCookie,
-//   deleteCookie,
-//   hasCookie,
-// } from "cookies-next/client";
+// import { getCookie } from "./utils/cookieActions";
+import {
+  getCookie,
+  getCookies,
+  setCookie,
+  deleteCookie,
+  hasCookie,
+} from "cookies-next/client";
 import { cookies } from "next/headers";
 
 const protectedRoutes = ["/products"];
@@ -17,6 +17,8 @@ const publicRoutes = ["/"];
 
 export default async function middleware(request: NextRequest) {
   let cookie: any = await getCookie("auth");
+
+  console.log("middleware cookie", request.cookies.get("auth"));
 
   if (request.cookies.has("auth")) {
     cookie = request.cookies.get("auth")?.value;
