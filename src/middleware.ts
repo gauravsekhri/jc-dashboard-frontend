@@ -25,7 +25,7 @@ export default async function middleware(request: NextRequest) {
   if (request.cookies.has("auth")) {
     cookie = request.cookies.get("auth");
     console.log("header cookie", request.cookies.get("auth"));
-    return NextResponse.next();
+    // return NextResponse.next();
   }
 
   if (!cookie) {
@@ -49,5 +49,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: ["/((?!_next/static|_next/image|.*\\.png$).*)"],
 };
