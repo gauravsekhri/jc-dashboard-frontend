@@ -2,6 +2,13 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getCookie } from "./utils/cookieActions";
+// import {
+//   getCookie,
+//   getCookies,
+//   setCookie,
+//   deleteCookie,
+//   hasCookie,
+// } from "cookies-next/client";
 import { cookies } from "next/headers";
 
 const protectedRoutes = ["/products"];
@@ -9,7 +16,14 @@ const authRoutes = ["/login", "/signup"];
 const publicRoutes = ["/"];
 
 export default async function middleware(request: NextRequest) {
-  const cookie = await getCookie("auth");
+  let cookie: any = await getCookie("auth");
+
+  if (request.cookies.has("auth")) {
+    cookie = request.cookies.get("auth")?.value;
+    console.log("header cookie", request.cookies.get("auth"));
+    // return NextResponse.next();
+  }
+
   console.log("cookie value", cookie);
 
   const path = request.nextUrl.pathname;

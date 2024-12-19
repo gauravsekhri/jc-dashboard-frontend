@@ -1,4 +1,10 @@
 import PageHeader from "@/components/Common/PageHeader";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Products | Assignment | Jasper Colin",
+  description: "This is a sample description for my application.",
+};
 
 export default function RootLayout({
   children,
