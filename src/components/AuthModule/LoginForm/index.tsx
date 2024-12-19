@@ -56,7 +56,7 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     // setIsLoading(true);
     request("/user/login", "POST", data)
-      .then((res) => {
+      .then(async (res) => {
         if (res?.success) {
           if (res?.data?.token) await createCookie("auth", res?.data?.token);
           toast.success(res?.message);
