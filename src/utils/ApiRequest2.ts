@@ -30,7 +30,7 @@ const request = async (
   axiosInstance.defaults.headers.common["accept"] = "application/json";
 
   const token = await getCookie("auth");
-  console.log(token);
+  console.log("cookie token", token);
   if (token) {
     axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + token;
   }

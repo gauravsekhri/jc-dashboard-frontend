@@ -153,7 +153,7 @@ export function SignupForm({
                     )}
                   />
                 </div>
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={isLoading}>
                   Submit
                 </Button>
               </div>
